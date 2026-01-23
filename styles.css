@@ -1,5 +1,4 @@
 body { font-family: system-ui, Arial, sans-serif; margin: 24px; }
-#kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0 24px; }
 .label { font-size: 12px; opacity: 0.7; margin-bottom: 6px; }
 .value { font-size: 20px; font-weight: 700; }
 .card { border: 1px solid #ddd; border-radius: 10px; padding: 12px; }
