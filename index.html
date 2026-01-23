@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Comunidad</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <h1>Dashboard Comunidad</h1>
+
+<section id="kpis">
+  <div class="kpi"><div class="label">Saldo</div><div class="value" id="kpi-saldo">—</div></div>
+
+  <div class="kpi"><div class="label">Emitido (mes)</div><div class="value" id="kpi-emitido">—</div></div>
+  <div class="kpi"><div class="label">Cobrado (mes)</div><div class="value" id="kpi-cobrado">—</div></div>
+  <div class="kpi"><div class="label">% Cobro (mes)</div><div class="value" id="kpi-pct">—</div></div>
+
+  <div class="kpi"><div class="label">Emitido (mes ant.)</div><div class="value" id="kpi-emitido-prev">—</div></div>
+  <div class="kpi"><div class="label">Cobrado (mes ant.)</div><div class="value" id="kpi-cobrado-prev">—</div></div>
+  <div class="kpi"><div class="label">% Cobro (mes ant.)</div><div class="value" id="kpi-pct-prev">—</div></div>
+
+  <div class="kpi"><div class="label">Gastos (mes)</div><div class="value" id="kpi-gastos">—</div></div>
+
+  <div class="kpi"><div class="label">Agua (m³ / €)</div><div class="value" id="kpi-agua">—</div></div>
+
+  <div class="kpi"><div class="label">Incidencias (# / €)</div><div class="value" id="kpi-incidencias">—</div></div>
+</section>
+
+
+  <section class="card">
+    <h2>Gráfica</h2>
+    <canvas id="chart" height="120"></canvas>
+  </section>
+
+  <!-- Chart.js por CDN (sin Node, sin instalar nada) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
