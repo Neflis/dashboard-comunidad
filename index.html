@@ -14,20 +14,57 @@
   <select id="monthSelect"></select>
 </div>
 
-<section id="kpis">
-  <div class="kpi"><div class="label">Saldo</div><div class="value" id="kpi-saldo">—</div></div>
+<section id="kpis" class="kpis">
+  <!-- Fila 1 -->
+  <div class="kpis-row kpis-row-2">
+    <div class="kpi kpi-big">
+      <div class="label">Saldo</div>
+      <div class="value" id="kpi-saldo">—</div>
+    </div>
 
-  <div class="kpi"><div class="label">Emitido (mes)</div><div class="value" id="kpi-emitido">—</div></div>
-  <div class="kpi"><div class="label">Cobrado (mes)</div><div class="value" id="kpi-cobrado">—</div></div>
-  <div class="kpi"><div class="label">% Cobro (mes)</div><div class="value" id="kpi-pct">—</div></div>
+    <div class="kpi kpi-big">
+      <div class="label">Gastos (mes)</div>
+      <div class="value" id="kpi-gastos">—</div>
+    </div>
+  </div>
 
-  <div class="kpi"><div class="label">Emitido (mes ant.)</div><div class="value" id="kpi-emitido-prev">—</div></div>
-  <div class="kpi"><div class="label">Cobrado (mes ant.)</div><div class="value" id="kpi-cobrado-prev">—</div></div>
-  <div class="kpi"><div class="label">% Cobro (mes ant.)</div><div class="value" id="kpi-pct-prev">—</div></div>
+  <!-- Fila 2 -->
+  <div class="kpis-row kpis-row-3">
+    <div class="kpi">
+      <div class="label">Emitido (mes)</div>
+      <div class="value" id="kpi-emitido">—</div>
+    </div>
 
-  <div class="kpi"><div class="label">Gastos (mes)</div><div class="value" id="kpi-gastos">—</div></div>
+    <div class="kpi">
+      <div class="label">Cobrado (mes)</div>
+      <div class="value" id="kpi-cobrado">—</div>
+    </div>
 
+    <div class="kpi">
+      <div class="label">% Cobro (mes)</div>
+      <div class="value" id="kpi-pct">—</div>
+    </div>
+  </div>
+
+  <!-- Fila 3 -->
+  <div class="kpis-row kpis-row-3">
+    <div class="kpi">
+      <div class="label">Emitido (mes ant.)</div>
+      <div class="value" id="kpi-emitido-prev">—</div>
+    </div>
+
+    <div class="kpi">
+      <div class="label">Cobrado (mes ant.)</div>
+      <div class="value" id="kpi-cobrado-prev">—</div>
+    </div>
+
+    <div class="kpi">
+      <div class="label">% Cobro (mes ant.)</div>
+      <div class="value" id="kpi-pct-prev">—</div>
+    </div>
+  </div>
 </section>
+
 
 
   <section class="card">
