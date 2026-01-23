@@ -46,12 +46,18 @@ async function main() {
       cobrado: slice.map(d => d.fees_collected),
       gastos: slice.map(d => d.expenses_total),
       saldo: slice.map(d => d.bank_balance),
+      water_m3: slice.map(d => d.water_m3 ?? 0),
     };
   }
 
   const ctx = document.getElementById('chart');
   if (!ctx) {
     console.error('No encuentro <canvas id="chart">. Revisa index.html');
+    return;
+  }
+  const ctxWater = document.getElementById('chartWater');
+  if (!ctxWater) {
+    console.error('No encuentro <canvas id="chartWater">. Revisa index.html');
     return;
   }
 
@@ -84,6 +90,26 @@ async function main() {
     });
   }
 
+  function buildWaterChart(index) {
+  const w = getWindow6(index);
+
+  return new Chart(ctxWater, {
+    type: 'bar',
+    data: {
+      labels: w.labels,
+      datasets: [
+        { label: 'm³', data: w.water_m3 }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'm³' } }
+      }
+    }
+  });
+}
+
   // ---- KPIs (sin agua/incidencias) ----
   function renderKpis(index) {
     const last = data[index];
@@ -115,14 +141,19 @@ async function main() {
   renderKpis(defaultIndex);
   renderEvents(defaultIndex);
   let chart = buildChart(defaultIndex);
+  let chartWater = buildWaterChart(defaultIndex);
 
   // Cambiar KPIs + gráfica al cambiar mes
   monthSelect.addEventListener('change', (e) => {
     const idx = Number(e.target.value);
     renderKpis(idx);
-    renderEvents(idx);
+    
     chart.destroy();
     chart = buildChart(idx);
+    chartWater.destroy();
+    chartWater = buildWaterChart(idx);
+
+    renderEvents(idx);
   });
 }
 
