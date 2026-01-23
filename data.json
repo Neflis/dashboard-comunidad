@@ -1,36 +1,16 @@
 [
   {
+    "month": "2025-12",
+    "bank_balance": 1433.05,
+    "fees_issued": 975,
+    "fees_collected": 845,
+    "expenses_total": 1997.14
+  },
+  {
     "month": "2026-01",
-    "bank_balance": 12000,
-    "fees_issued": 2000,
-    "fees_collected": 1850,
-    "expenses_total": 1100,
-    "water_m3": 35,
-    "water_eur": 98,
-    "incidents_count": 2,
-    "incidents_cost": 150
-  },
-  {
-    "month": "2026-02",
-    "bank_balance": 12800,
-    "fees_issued": 2000,
-    "fees_collected": 2000,
-    "expenses_total": 900,
-    "water_m3": 30,
-    "water_eur": 86,
-    "incidents_count": 1,
-    "incidents_cost": 40
-  },
-  {
-    "month": "2026-03",
-    "bank_balance": 13350,
-    "fees_issued": 2000,
-    "fees_collected": 1900,
-    "expenses_total": 1050,
-    "water_m3": 32,
-    "water_eur": 92,
-    "incidents_count": 3,
-    "incidents_cost": 210
+    "bank_balance": 1968.73,
+    "fees_issued": 975,
+    "fees_collected": 0,
+    "expenses_total": 618.29
   }
-
 ]
