@@ -20,5 +20,17 @@
     "water_eur": 86,
     "incidents_count": 1,
     "incidents_cost": 40
+  },
+  {
+    "month": "2026-03",
+    "bank_balance": 13350,
+    "fees_issued": 2000,
+    "fees_collected": 1900,
+    "expenses_total": 1050,
+    "water_m3": 32,
+    "water_eur": 92,
+    "incidents_count": 3,
+    "incidents_cost": 210
   }
+
 ]
