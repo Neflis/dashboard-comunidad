@@ -2,7 +2,6 @@ async function main() {
   const res = await fetch('./data.json');
   const data = await res.json();
 
-  
   const monthSelect = document.getElementById('monthSelect');
   if (!monthSelect) {
     console.error('No encuentro <select id="monthSelect">. Revisa index.html');
@@ -21,7 +20,56 @@ async function main() {
   // Por defecto: último mes
   monthSelect.value = String(data.length - 1);
 
-   function renderKpis(index) {
+  // ---- Gráfica: ventana de 6 meses (mes seleccionado y 5 anteriores) ----
+  function getWindow6(index) {
+    const start = Math.max(0, index - 5);
+    const slice = data.slice(start, index + 1);
+    return {
+      labels: slice.map(d => d.month),
+      emitido: slice.map(d => d.fees_issued),
+      cobrado: slice.map(d => d.fees_collected),
+      gastos: slice.map(d => d.expenses_total),
+      saldo: slice.map(d => d.bank_balance),
+    };
+  }
+
+  const ctx = document.getElementById('chart');
+  if (!ctx) {
+    console.error('No encuentro <canvas id="chart">. Revisa index.html');
+    return;
+  }
+
+  function buildChart(index) {
+    const w = getWindow6(index);
+
+    return new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: w.labels,
+        datasets: [
+          { label: 'Emitido', data: w.emitido },
+          { label: 'Recaudado', data: w.cobrado },
+          { label: 'Gastos', data: w.gastos },
+          { label: 'Saldo', data: w.saldo, type: 'line', yAxisID: 'y1' },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: '€ (mes)' } },
+          y1: {
+            position: 'right',
+            beginAtZero: true,
+            grid: { drawOnChartArea: false },
+            title: { display: true, text: '€ (saldo)' },
+          },
+        },
+      },
+    });
+  }
+
+  // ---- KPIs (sin agua/incidencias) ----
+  function renderKpis(index) {
     const last = data[index];
     const prev = index > 0 ? data[index - 1] : null;
 
@@ -46,57 +94,18 @@ async function main() {
     }
   }
 
-  // Pintar KPIs del mes seleccionado por defecto
-  renderKpis(data.length - 1);
+  // Pintar por defecto el último mes
+  const defaultIndex = data.length - 1;
+  renderKpis(defaultIndex);
+  let chart = buildChart(defaultIndex);
 
-  // Cambiar KPIs al cambiar mes
+  // Cambiar KPIs + gráfica al cambiar mes
   monthSelect.addEventListener('change', (e) => {
     const idx = Number(e.target.value);
     renderKpis(idx);
     chart.destroy();
     chart = buildChart(idx);
   });
-
-  function getWindow6(index) {
-    const start = Math.max(0, index - 5);
-    const slice = data.slice(start, index + 1);
-    return {
-      labels: slice.map(d => d.month),
-      emitido: slice.map(d => d.fees_issued),
-      cobrado: slice.map(d => d.fees_collected),
-      gastos: slice.map(d => d.expenses_total),
-      saldo: slice.map(d => d.bank_balance)
-    };
-  }
-
-  const ctx = document.getElementById('chart');
-
-  function buildChart(index) {
-    const w = getWindow6(index);
-
-    return new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: w.labels,
-        datasets: [
-          { label: 'Emitido', data: w.emitido },
-          { label: 'Recaudado', data: w.cobrado },
-          { label: 'Gastos', data: w.gastos },
-          { label: 'Saldo', data: w.saldo, type: 'line', yAxisID: 'y1' }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { beginAtZero: true, title: { display: true, text: '€ (mes)' } },
-          y1: { position: 'right', beginAtZero: true, grid: { drawOnChartArea: false }, title: { display: true, text: '€ (saldo)' } }
-        }
-      }
-    });
-  }
-
-  let chart = buildChart(data.length - 1);
-
 }
 
 main().catch(console.error);
