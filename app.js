@@ -50,6 +50,23 @@ async function main() {
     };
   }
 
+  function getLastNWithWaterData(index, n = 6) {
+    const picked = [];
+
+    for (let i = index; i >= 0 && picked.length < n; i--) {
+      const v = data[i].water_m3 ?? 0;
+      if (v > 0) picked.push(data[i]);
+    }
+
+    picked.reverse(); // para que quede de antiguo -> reciente
+
+    return {
+      labels: picked.map(d => d.month),
+      values: picked.map(d => d.water_m3 ?? 0),
+    };
+  }
+
+
   const ctx = document.getElementById('chart');
   if (!ctx) {
     console.error('No encuentro <canvas id="chart">. Revisa index.html');
@@ -63,6 +80,13 @@ async function main() {
 
   function buildChart(index) {
     const w = getWindow6(index);
+    if (!w.labels.length) {
+      return new Chart(ctxWater, {
+        type: 'bar',
+        data: { labels: ['Sin datos'], datasets: [{ label: 'm³', data: [0] }] },
+        options: { responsive: true }
+      });
+    }
 
     return new Chart(ctx, {
       type: 'bar',
@@ -91,24 +115,24 @@ async function main() {
   }
 
   function buildWaterChart(index) {
-  const w = getWindow6(index);
+    const w = getLastNWithWaterData(index, 6);
 
-  return new Chart(ctxWater, {
-    type: 'bar',
-    data: {
-      labels: w.labels,
-      datasets: [
-        { label: 'm³', data: w.water_m3 }
-      ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: { beginAtZero: true, title: { display: true, text: 'm³' } }
+    return new Chart(ctxWater, {
+      type: 'bar',
+      data: {
+        labels: w.labels,
+        datasets: [
+          { label: 'm³', data: w.values }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'm³' } }
+        }
       }
-    }
-  });
-}
+    });
+  }
 
   // ---- KPIs (sin agua/incidencias) ----
   function renderKpis(index) {
@@ -147,7 +171,7 @@ async function main() {
   monthSelect.addEventListener('change', (e) => {
     const idx = Number(e.target.value);
     renderKpis(idx);
-    
+
     chart.destroy();
     chart = buildChart(idx);
     chartWater.destroy();
