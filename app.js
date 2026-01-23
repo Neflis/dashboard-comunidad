@@ -2,13 +2,13 @@ async function main() {
   const res = await fetch('./data.json');
   const data = await res.json();
 
-  monthSelect.innerHTML = '';
-
+  
   const monthSelect = document.getElementById('monthSelect');
   if (!monthSelect) {
     console.error('No encuentro <select id="monthSelect">. Revisa index.html');
     return;
   }
+  monthSelect.innerHTML = '';
 
   // Rellenar select con meses
   data.forEach((d, idx) => {
