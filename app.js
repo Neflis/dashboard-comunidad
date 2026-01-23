@@ -33,8 +33,6 @@ async function main() {
     document.getElementById('kpi-pct').textContent = `${pct.toFixed(1)} %`;
 
     document.getElementById('kpi-gastos').textContent = `${last.expenses_total.toFixed(0)} €`;
-    document.getElementById('kpi-agua').textContent = `${last.water_m3.toFixed(0)} m³ / ${last.water_eur.toFixed(0)} €`;
-    document.getElementById('kpi-incidencias').textContent = `${last.incidents_count} / ${last.incidents_cost.toFixed(0)} €`;
 
     if (prev) {
       const pctPrev = prev.fees_issued ? (prev.fees_collected / prev.fees_issued) * 100 : 0;
@@ -55,36 +53,50 @@ async function main() {
   monthSelect.addEventListener('change', (e) => {
     const idx = Number(e.target.value);
     renderKpis(idx);
+    chart.destroy();
+    chart = buildChart(idx);
   });
 
-  // Datos para la gráfica
-  const labels = data.map(d => d.month);
-  const cobrado = data.map(d => d.fees_collected);
-  const emitido = data.map(d => d.fees_issued);
-  const gastos = data.map(d => d.expenses_total);
-  const saldo = data.map(d => d.bank_balance);
+  function getWindow6(index) {
+    const start = Math.max(0, index - 5);
+    const slice = data.slice(start, index + 1);
+    return {
+      labels: slice.map(d => d.month),
+      emitido: slice.map(d => d.fees_issued),
+      cobrado: slice.map(d => d.fees_collected),
+      gastos: slice.map(d => d.expenses_total),
+      saldo: slice.map(d => d.bank_balance)
+    };
+  }
 
   const ctx = document.getElementById('chart');
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [
-        { label: 'Cobrado', data: cobrado },
-        { label: 'Emitido', data: emitido },
-        { label: 'Gastos', data: gastos },
-        { label: 'Saldo', data: saldo, type: 'line', yAxisID: 'y1' }
-      ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: { beginAtZero: true, title: { display: true, text: '€ (mes)' } },
-        y1: { position: 'right', beginAtZero: true, grid: { drawOnChartArea: false }, title: { display: true, text: '€ (saldo)' } }
+  function buildChart(index) {
+    const w = getWindow6(index);
+
+    return new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: w.labels,
+        datasets: [
+          { label: 'Emitido', data: w.emitido },
+          { label: 'Recaudado', data: w.cobrado },
+          { label: 'Gastos', data: w.gastos },
+          { label: 'Saldo', data: w.saldo, type: 'line', yAxisID: 'y1' }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: '€ (mes)' } },
+          y1: { position: 'right', beginAtZero: true, grid: { drawOnChartArea: false }, title: { display: true, text: '€ (saldo)' } }
+        }
       }
-    }
-  });
+    });
+  }
+
+  let chart = buildChart(data.length - 1);
+
 }
 
 main().catch(console.error);
