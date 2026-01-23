@@ -4,13 +4,25 @@
     "bank_balance": 1433.05,
     "fees_issued": 975,
     "fees_collected": 845,
-    "expenses_total": 1997.14
+    "expenses_total": 1997.14,
+    "events": [
+      { "date": "2026-03-05", "action": "Ha venido a revisar la constructora" },
+      { "date": "2026-03-07", "action": "Se ha solicitado a la administradora la documentación" },
+      { "date": "2026-03-10", "action": "Se han buscado incidencias nuevas en el bloque" },
+      { "date": "2026-03-12", "action": "Se ha reportado una nueva incidencia" }
+    ]
   },
   {
     "month": "2026-01",
     "bank_balance": 1968.73,
     "fees_issued": 975,
     "fees_collected": 0,
-    "expenses_total": 618.29
+    "expenses_total": 618.29,
+    "events": [
+      { "date": "2026-03-05", "action": "Ha venido a revisar la constructora" },
+      { "date": "2026-03-07", "action": "Se ha solicitado a la administradora la documentación" },
+      { "date": "2026-03-10", "action": "Se han buscado incidencias nuevas en el bloque" },
+      { "date": "2026-03-12", "action": "Se ha reportado una nueva incidencia" }
+    ]
   }
 ]

@@ -20,6 +20,22 @@ async function main() {
   // Por defecto: último mes
   monthSelect.value = String(data.length - 1);
 
+  function renderEvents(index) {
+    const tbody = document.getElementById('eventsTbody');
+    if (!tbody) return;
+
+    const month = data[index];
+    const events = (month.events || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+
+    tbody.innerHTML = events.map(ev => `
+      <tr>
+        <td>${ev.date}</td>
+        <td>${ev.action}</td>
+      </tr>
+    `).join('') || `<tr><td colspan="2">Sin actuaciones registradas</td></tr>`;
+  }
+
+
   // ---- Gráfica: ventana de 6 meses (mes seleccionado y 5 anteriores) ----
   function getWindow6(index) {
     const start = Math.max(0, index - 5);
@@ -97,12 +113,14 @@ async function main() {
   // Pintar por defecto el último mes
   const defaultIndex = data.length - 1;
   renderKpis(defaultIndex);
+  renderEvents(defaultIndex);
   let chart = buildChart(defaultIndex);
 
   // Cambiar KPIs + gráfica al cambiar mes
   monthSelect.addEventListener('change', (e) => {
     const idx = Number(e.target.value);
     renderKpis(idx);
+    renderEvents(idx);
     chart.destroy();
     chart = buildChart(idx);
   });

@@ -9,68 +9,88 @@
 <body>
   <h1>Dashboard Comunidad</h1>
 
-<div class="toolbar">
-  <label for="monthSelect">Mes:</label>
-  <select id="monthSelect"></select>
-</div>
-
-<section id="kpis" class="kpis">
-  <!-- Fila 1 -->
-  <div class="kpis-row kpis-row-2">
-    <div class="kpi kpi-big">
-      <div class="label">Saldo</div>
-      <div class="value" id="kpi-saldo">—</div>
-    </div>
-
-    <div class="kpi kpi-big">
-      <div class="label">Gastos (mes)</div>
-      <div class="value" id="kpi-gastos">—</div>
-    </div>
+  <div class="toolbar">
+    <label for="monthSelect">Mes:</label>
+    <select id="monthSelect"></select>
   </div>
+  
+  <!-- KPIs -->
+  <section id="kpis" class="kpis">
+    <!-- Fila 1 -->
+    <div class="kpis-row kpis-row-2">
+      <div class="kpi kpi-big">
+        <div class="label">Saldo</div>
+        <div class="value" id="kpi-saldo">—</div>
+      </div>
 
-  <!-- Fila 2 -->
-  <div class="kpis-row kpis-row-3">
-    <div class="kpi">
-      <div class="label">Emitido (mes)</div>
-      <div class="value" id="kpi-emitido">—</div>
+      <div class="kpi kpi-big">
+        <div class="label">Gastos (mes)</div>
+        <div class="value" id="kpi-gastos">—</div>
+      </div>
     </div>
 
-    <div class="kpi">
-      <div class="label">Cobrado (mes)</div>
-      <div class="value" id="kpi-cobrado">—</div>
+    <!-- Fila 2 -->
+    <div class="kpis-row kpis-row-3">
+      <div class="kpi">
+        <div class="label">Emitido (mes)</div>
+        <div class="value" id="kpi-emitido">—</div>
+      </div>
+
+      <div class="kpi">
+        <div class="label">Cobrado (mes)</div>
+        <div class="value" id="kpi-cobrado">—</div>
+      </div>
+
+      <div class="kpi">
+        <div class="label">% Cobro (mes)</div>
+        <div class="value" id="kpi-pct">—</div>
+      </div>
     </div>
 
-    <div class="kpi">
-      <div class="label">% Cobro (mes)</div>
-      <div class="value" id="kpi-pct">—</div>
+    <!-- Fila 3 -->
+    <div class="kpis-row kpis-row-3">
+      <div class="kpi">
+        <div class="label">Emitido (mes ant.)</div>
+        <div class="value" id="kpi-emitido-prev">—</div>
+      </div>
+
+      <div class="kpi">
+        <div class="label">Cobrado (mes ant.)</div>
+        <div class="value" id="kpi-cobrado-prev">—</div>
+      </div>
+
+      <div class="kpi">
+        <div class="label">% Cobro (mes ant.)</div>
+        <div class="value" id="kpi-pct-prev">—</div>
+      </div>
     </div>
-  </div>
-
-  <!-- Fila 3 -->
-  <div class="kpis-row kpis-row-3">
-    <div class="kpi">
-      <div class="label">Emitido (mes ant.)</div>
-      <div class="value" id="kpi-emitido-prev">—</div>
-    </div>
-
-    <div class="kpi">
-      <div class="label">Cobrado (mes ant.)</div>
-      <div class="value" id="kpi-cobrado-prev">—</div>
-    </div>
-
-    <div class="kpi">
-      <div class="label">% Cobro (mes ant.)</div>
-      <div class="value" id="kpi-pct-prev">—</div>
-    </div>
-  </div>
-</section>
+  </section>
 
 
-
+  <!-- Gráfica -->
   <section class="card">
     <h2>Gráfica</h2>
     <canvas id="chart" height="120"></canvas>
   </section>
+
+  <!-- Tabla de actuaciones -->
+  <section class="card">
+    <h2>Actuaciones</h2>
+
+    <div class="table-wrap">
+      <table class="table" id="eventsTable">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Actuación</th>
+          </tr>
+        </thead>
+        <tbody id="eventsTbody">
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 
   <!-- Chart.js por CDN (sin Node, sin instalar nada) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

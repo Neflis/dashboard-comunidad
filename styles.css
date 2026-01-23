@@ -22,3 +22,27 @@ select { padding: 6px 10px; border-radius: 8px; border: 1px solid #ddd; }
   .kpis-row-3 { grid-template-columns: 1fr; }
   .kpis-row-2 { grid-template-columns: 1fr; }
 }
+.table-wrap { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.table th {
+  font-size: 12px;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+}
+
+.table td {
+  font-size: 14px;
+}
