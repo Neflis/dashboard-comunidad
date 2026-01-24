@@ -180,7 +180,7 @@ async function main() {
         <tr>
           <td>${d.code ?? ''}</td>
           <td>${Number(d.amount_eur ?? 0).toFixed(2)} €</td>
-          <td>${d.months ?? ''}</td>
+          <td>${d.start ?? ''}</td>
           <td>${d.note ?? ''}</td>
         </tr>
       `).join('') || `<tr><td colspan="4">Sin morosidad registrada</td></tr>`;

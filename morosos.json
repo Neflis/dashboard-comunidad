@@ -1,7 +1,10 @@
 {
-  "updated_at": "2026-01-24",
+  "updated_at": "2026-01-24 (importes con deuda de obra) - Si piensas que es erroneo contacta con la administracion",
   "debtors": [
-    { "code": "VIV-01", "amount_eur": 260.00, "months": 4, "note": "Plan de pagos" },
-    { "code": "VIV-02", "amount_eur": 130.00, "months": 2, "note": "" }
+    { "code": "*****", "amount_eur": 532.20, "start": 532.20, "note": "Con estrategia de pagos" },
+    { "code": "*****", "amount_eur": 7282.45, "start": 7282.45, "note": "En espera del banco" },
+    { "code": "*****", "amount_eur": 1528.13, "start": 1528.13, "note": "Con estrategia de pagos" },
+    { "code": "*****", "amount_eur": 210.18, "start": 210.18, "note": "Con estrategia de pagos" },
+    { "code": "*****", "amount_eur": 8579.93, "start": 8579.93, "note": "En espera de abogado" }
   ]
 }
