@@ -2,6 +2,9 @@ async function main() {
   const res = await fetch('./data.json');
   const data = await res.json();
   const PEOPLE_REF = 38;
+  const L_PER_PERSON_DAY = 128;
+  const M3_PER_PERSON_MONTH = (L_PER_PERSON_DAY / 1000) * 30; // 3.84 m³/mes aprox (30 días)
+  const M3_FOR_38 = M3_PER_PERSON_MONTH * PEOPLE_REF;         // 145.92 m³/mes
 
   const monthSelect = document.getElementById('monthSelect');
   if (!monthSelect) {
@@ -143,11 +146,11 @@ async function main() {
           // Barras: consumo total
           { type: 'bar', label: 'Agua (m³)', data: totals, yAxisID: 'y' },
 
-          // Línea: media por persona (eje derecho)
-          { type: 'line', label: 'Media por persona (m³/persona)', data: w.labels.map(() => avgPerPerson), yAxisID: 'y2' },
+          // Línea: media por persona 
+          { type: 'line', label: 'Est. 1 persona (m³/mes)',  data: w.labels.map(() => M3_PER_PERSON_MONTH), yAxisID: 'y' },
 
-          // Línea: equivalente 38 personas (eje izquierdo)
-          { type: 'line', label: 'Media para 38 personas (m³)', data: w.labels.map(() => avgFor38), yAxisID: 'y' }
+          // Línea: equivalente 38 personas
+          { type: 'line', label: 'Est. 38 personas (m³/mes)', data: w.labels.map(() => M3_FOR_38),yAxisID: 'y' }
         ]
       },
       options: {
