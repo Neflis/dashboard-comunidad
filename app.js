@@ -203,9 +203,6 @@ async function main() {
 
       const updatedEl = document.getElementById('debtUpdated');
       if (updatedEl) updatedEl.textContent = `Actualizado: ${payload.updated_at ?? '—'}`;
-
-      const tbody = document.getElementById('debtTbody');
-      if (!tbody) return;
   
       document.getElementById('debtTotal').textContent = `${payload.total_amount_eur} €`;
       document.getElementById('debtCount').textContent = `${payload.debtors_count}`;
