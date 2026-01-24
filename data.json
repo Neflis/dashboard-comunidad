@@ -44,6 +44,7 @@
     "water_m3": 0.0,
     "events": [
       {"date": "2025-12-03", "action": "Se hace un traspaso de enseres de la comunidad" },
+      {"date": "2025-12-09", "action": "Se resuelve la incidencia de la antena" },
       {"date": "2025-12-10", "action": "Se solicita traspaso de informacion y reunion con los implicados" },
       {"date": "2025-12-15", "action": "Se visita Gestosur para hacer una reclamacion de documentos y obtener informacion de la situacion actual" },
       {"date": "2025-12-18", "action": "Se revisa la documentacion y se sacan especulaciones de la situacion de la obra" },
@@ -57,21 +58,21 @@
     "month": "2026-01",
     "bank_balance": 1968.73,
     "fees_issued": 975.0,
-    "fees_collected": 975.0,
+    "fees_collected": 0,
     "expenses_total": 439.17,
     "water_m3": 347.0,
     "events": [
-      { "date": "2025-01-08", "action": "Se firma el acta del dia 2 de Diciembre" },
-      { "date": "2025-01-08", "action": "Se envian fotos sobre las humedades existentes en las propiedades" },
-      { "date": "2025-01-12", "action": "Se envian mas fotos sobre las humedades" },
-      { "date": "2025-01-12", "action": "Se recuerda que aun no se han subido ciertos documentos" },
-      { "date": "2025-01-12", "action": "Solicitamos una actualizacion de cuentas para la comision vecinal del dia 15" },
-      { "date": "2025-01-15", "action": "Se realiza una Comision vecinal para informar sobre todo lo obtenido y especificar ciertas pautas y decisiones" },
-      { "date": "2025-01-17", "action": "Solicitamos mas documentos pertenecientes a la comunidad" },
-      { "date": "2025-01-20", "action": "Se recuerda a la administradora los documentos, que insista a la constructora para que vea las humedades y una revision de 2 pagos duplicados en la plataforma" },
-      { "date": "2025-01-21", "action": "Se envia el acta con intencion de poder acceder a las cuentas bancarias" },
-      { "date": "2025-01-22", "action": "Se reune la constructora y nos da las explicaciones de porque estan volviendo a aparecer las humedades" },
-      { "date": "2025-01-22", "action": "Se suben algunos documentos por parte de la administracion" }
+      { "date": "2026-01-08", "action": "Se firma el acta del dia 2 de Diciembre" },
+      { "date": "2026-01-08", "action": "Se envian fotos sobre las humedades existentes en las propiedades" },
+      { "date": "2026-01-12", "action": "Se envian mas fotos sobre las humedades" },
+      { "date": "2026-01-12", "action": "Se recuerda que aun no se han subido ciertos documentos" },
+      { "date": "2026-01-12", "action": "Solicitamos una actualizacion de cuentas para la comision vecinal del dia 15" },
+      { "date": "2026-01-15", "action": "Se realiza una Comision vecinal para informar sobre todo lo obtenido y especificar ciertas pautas y decisiones" },
+      { "date": "2026-01-17", "action": "Solicitamos mas documentos pertenecientes a la comunidad" },
+      { "date": "2026-01-20", "action": "Se recuerda a la administradora los documentos, que insista a la constructora para que vea las humedades y una revision de 2 pagos duplicados en la plataforma" },
+      { "date": "2026-01-21", "action": "Se envia el acta con intencion de poder acceder a las cuentas bancarias" },
+      { "date": "2026-01-22", "action": "Se reune la constructora y nos da las explicaciones de porque estan volviendo a aparecer las humedades" },
+      { "date": "2026-01-22", "action": "Se suben algunos documentos por parte de la administracion" }
     ]
   }
 ]

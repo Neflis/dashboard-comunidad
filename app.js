@@ -160,6 +160,36 @@ async function main() {
     }
   }
 
+  async function loadDebtTable() {
+    try {
+      const res = await fetch('./morosos.json');
+      if (!res.ok) throw new Error('No se pudo cargar morosos.json');
+      const payload = await res.json();
+
+      const updatedEl = document.getElementById('debtUpdated');
+      if (updatedEl) updatedEl.textContent = `Actualizado: ${payload.updated_at ?? '—'}`;
+
+      const tbody = document.getElementById('debtTbody');
+      if (!tbody) return;
+
+      const rows = (payload.debtors || [])
+        .slice()
+        .sort((a, b) => (b.amount_eur ?? 0) - (a.amount_eur ?? 0));
+
+      tbody.innerHTML = rows.map(d => `
+        <tr>
+          <td>${d.code ?? ''}</td>
+          <td>${Number(d.amount_eur ?? 0).toFixed(2)} €</td>
+          <td>${d.months ?? ''}</td>
+          <td>${d.note ?? ''}</td>
+        </tr>
+      `).join('') || `<tr><td colspan="4">Sin morosidad registrada</td></tr>`;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+
   // Pintar por defecto el último mes
   const defaultIndex = data.length - 1;
   renderKpis(defaultIndex);
@@ -179,6 +209,8 @@ async function main() {
 
     renderEvents(idx);
   });
+
+  await loadDebtTable();
 }
 
 main().catch(console.error);

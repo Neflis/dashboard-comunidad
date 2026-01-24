@@ -1,0 +1,7 @@
+{
+  "updated_at": "2026-01-24",
+  "debtors": [
+    { "code": "VIV-01", "amount_eur": 260.00, "months": 4, "note": "Plan de pagos" },
+    { "code": "VIV-02", "amount_eur": 130.00, "months": 2, "note": "" }
+  ]
+}
