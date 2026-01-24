@@ -206,19 +206,10 @@ async function main() {
 
       const tbody = document.getElementById('debtTbody');
       if (!tbody) return;
-
-      const debtors = (payload.debtors || []).slice();
-      const amounts = debtors
-        .map(d => Number(d.amount_eur ?? 0))
-        .filter(x => Number.isFinite(x) && x > 0);
   
-      const total = amounts.reduce((a, b) => a + b, 0);
-      const count = amounts.length;
-      const avg = count ? total / count : 0;
-  
-      document.getElementById('debtTotal').textContent = `${total.toFixed(2)} €`;
-      document.getElementById('debtCount').textContent = `${count}`;
-      document.getElementById('debtAvg').textContent = `${avg.toFixed(2)} €`;
+      document.getElementById('debtTotal').textContent = `${payload.total_amount_eur} €`;
+      document.getElementById('debtCount').textContent = `${payload.debtors_count}`;
+      document.getElementById('debtAvg').textContent = `${payload.average_amount_eur} €`;
 
     } catch (e) {
       console.error(e);
