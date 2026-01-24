@@ -7,7 +7,10 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <h1>Dashboard Comunidad</h1>
+  <div class="header">
+    <h1>Dashboard Comunidad</h1>
+    <div class="muted" id="morosidadUpdatedTop">Dato actualizado: —</div>
+  </div>
 
   <div class="toolbar">
     <label for="monthSelect">Mes:</label>
@@ -17,15 +20,20 @@
   <!-- KPIs -->
   <section id="kpis" class="kpis">
     <!-- Fila 1 -->
-    <div class="kpis-row kpis-row-2">
-      <div class="kpi kpi-big">
+    <div class="kpis-row kpis-row-3">
+      <div class="kpi">
         <div class="label">Saldo</div>
         <div class="value" id="kpi-saldo">—</div>
       </div>
 
-      <div class="kpi kpi-big">
+      <div class="kpi">
         <div class="label">Gastos (mes)</div>
         <div class="value" id="kpi-gastos">—</div>
+      </div>
+
+      <div class="kpi">
+        <div class="label">Total morosidad</div>
+        <div class="value" id="kpi-morosidad">—</div>
       </div>
     </div>
 
@@ -97,31 +105,6 @@
       </table>
     </div>
   </section>
-
-  <!-- Morosidad -->
-  <section class="card section-gap">
-    <h2>Morosidad</h2>
-    <div class="muted" id="debtUpdated">Actualizado: —</div>
-
-    <div class="kpis-row kpis-row-3" style="margin-top:10px;">
-      <div class="kpi">
-        <div class="label">Total morosidad</div>
-        <div class="value" id="debtTotal">—</div>
-      </div>
-
-      <div class="kpi">
-        <div class="label">Nº morosos</div>
-        <div class="value" id="debtCount">—</div>
-      </div>
-
-      <div class="kpi">
-        <div class="label">Deuda media</div>
-        <div class="value" id="debtAvg">—</div>
-      </div>
-    </div>
-  </section>
-
-
 
   <!-- Chart.js por CDN (sin Node, sin instalar nada) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

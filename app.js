@@ -201,17 +201,17 @@ async function main() {
       if (!res.ok) throw new Error('No se pudo cargar morosos.json');
       const payload = await res.json();
 
-      const updatedEl = document.getElementById('debtUpdated');
-      if (updatedEl) updatedEl.textContent = `Actualizado: ${payload.updated_at ?? '—'}`;
-  
-      document.getElementById('debtTotal').textContent = `${payload.total_amount_eur} €`;
-      document.getElementById('debtCount').textContent = `${payload.debtors_count}`;
-      document.getElementById('debtAvg').textContent = `${payload.average_amount_eur} €`;
+      const top = document.getElementById('morosidadUpdatedTop');
+      if (top) top.textContent = `Dato actualizado: ${payload.updated_at ?? '—'}`;
 
+      const total = Number(payload.total_amount_eur ?? 0);
+      const el = document.getElementById('kpi-morosidad');
+      if (el) el.textContent = `${total.toFixed(2)} €`;
     } catch (e) {
       console.error(e);
     }
   }
+
 
 
   // Pintar por defecto el último mes
