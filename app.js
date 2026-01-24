@@ -1,6 +1,7 @@
 async function main() {
   const res = await fetch('./data.json');
   const data = await res.json();
+  const PEOPLE_REF = 38;
 
   const monthSelect = document.getElementById('monthSelect');
   if (!monthSelect) {
@@ -114,25 +115,56 @@ async function main() {
     });
   }
 
+  function mean(arr) {
+    if (!arr.length) return 0;
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
+  }
+
   function buildWaterChart(index) {
     const w = getLastNWithWaterData(index, 6);
 
+    if (!w.labels.length) {
+      return new Chart(ctxWater, {
+        type: 'bar',
+        data: { labels: ['Sin datos'], datasets: [{ label: 'm³', data: [0] }] },
+        options: { responsive: true }
+      });
+    }
+
+    const totals = w.values; // m³ totales
+    const perPerson = totals.map(v => v / PEOPLE_REF); // m³/persona
+    const avgPerPerson = mean(perPerson);              // media m³/persona
+    const avgFor38 = avgPerPerson * PEOPLE_REF;        // media equivalente 38 personas (m³ total)
+
     return new Chart(ctxWater, {
-      type: 'bar',
       data: {
         labels: w.labels,
         datasets: [
-          { label: 'm³', data: w.values }
+          // Barras: consumo total
+          { type: 'bar', label: 'Agua (m³)', data: totals, yAxisID: 'y' },
+
+          // Línea: media por persona (eje derecho)
+          { type: 'line', label: 'Media por persona (m³/persona)', data: w.labels.map(() => avgPerPerson), yAxisID: 'y2' },
+
+          // Línea: equivalente 38 personas (eje izquierdo)
+          { type: 'line', label: 'Media para 38 personas (m³)', data: w.labels.map(() => avgFor38), yAxisID: 'y' }
         ]
       },
       options: {
         responsive: true,
         scales: {
-          y: { beginAtZero: true, title: { display: true, text: 'm³' } }
+          y: { beginAtZero: true, title: { display: true, text: 'm³ (total)' } },
+          y2: {
+            position: 'right',
+            beginAtZero: true,
+            grid: { drawOnChartArea: false },
+            title: { display: true, text: 'm³/persona' }
+          }
         }
       }
     });
   }
+
 
   // ---- KPIs (sin agua/incidencias) ----
   function renderKpis(index) {
