@@ -68,3 +68,57 @@ select { padding: 6px 10px; border-radius: 8px; border: 1px solid #ddd; }
   gap:12px;
   flex-wrap:wrap;
 }
+
+
+/* ---------- THEME ---------- */
+:root{
+  --bg: #ffffff;
+  --text: #0f172a;
+  --muted: rgba(15, 23, 42, 0.65);
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --row: #f8fafc;
+}
+
+html[data-theme="dark"]{
+  --bg: #0b1220;
+  --text: #e5e7eb;
+  --muted: rgba(229, 231, 235, 0.65);
+  --card: #0f172a;
+  --border: #1f2937;
+  --row: #111c33;
+}
+
+body{ background: var(--bg); color: var(--text); }
+
+.card, .kpi{ background: var(--card); border-color: var(--border); }
+
+.label, .muted{ color: var(--muted); opacity: 1; }
+
+select{
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* tablas */
+.table th, .table td{ border-bottom-color: var(--border); }
+.table tbody tr:hover{ background: var(--row); }
+
+/* header + botón */
+.header{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn-toggle{
+  margin-left:auto;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+}

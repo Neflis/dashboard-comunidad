@@ -7,6 +7,28 @@ async function main() {
   const M3_FOR_38 = M3_PER_PERSON_MONTH * PEOPLE_REF;         // 145.92 m³/mes
 
   const monthSelect = document.getElementById('monthSelect');
+
+  // ---- Theme (default: dark) ----
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme || 'dark');
+
+  const themeBtn = document.getElementById('themeToggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+
   if (!monthSelect) {
     console.error('No encuentro <select id="monthSelect">. Revisa index.html');
     return;
@@ -39,7 +61,6 @@ async function main() {
     `).join('') || `<tr><td colspan="2">Sin actuaciones registradas</td></tr>`;
   }
 
-
   // ---- Gráfica: ventana de 6 meses (mes seleccionado y 5 anteriores) ----
   function getWindow6(index) {
     const start = Math.max(0, index - 5);
@@ -69,7 +90,6 @@ async function main() {
       values: picked.map(d => d.water_m3 ?? 0),
     };
   }
-
 
   const ctx = document.getElementById('chart');
   if (!ctx) {
@@ -168,7 +188,6 @@ async function main() {
     });
   }
 
-
   // ---- KPIs (sin agua/incidencias) ----
   function renderKpis(index) {
     const last = data[index];
@@ -211,8 +230,6 @@ async function main() {
       console.error(e);
     }
   }
-
-
 
   // Pintar por defecto el último mes
   const defaultIndex = data.length - 1;
