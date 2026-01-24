@@ -147,10 +147,10 @@ async function main() {
           { type: 'bar', label: 'Agua (m³)', data: totals, yAxisID: 'y' },
 
           // Línea: media por persona 
-          { type: 'line', label: 'Est. 1 persona (m³/mes)',  data: w.labels.map(() => M3_PER_PERSON_MONTH), yAxisID: 'y' },
+          { type: 'line', label: 'Est. 1 persona (m³/mes)',  data: w.labels.map(() => M3_PER_PERSON_MONTH*2), yAxisID: 'y' },
 
           // Línea: equivalente 38 personas
-          { type: 'line', label: 'Est. 38 personas (m³/mes)', data: w.labels.map(() => M3_FOR_38),yAxisID: 'y' }
+          { type: 'line', label: 'Est. 38 personas (m³/mes)', data: w.labels.map(() => M3_FOR_38*2),yAxisID: 'y' }
         ]
       },
       options: {
