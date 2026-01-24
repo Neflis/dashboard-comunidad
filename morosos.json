@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-01-24 (importes con deuda de obra) - Si piensas que es erroneo contacta con la administracion",
+  "updated_at": "2026-01-24 (importes con deuda de obra)",
   "debtors": [
     { "code": "*****", "amount_eur": 532.20, "start": 532.20, "note": "Con estrategia de pagos" },
     { "code": "*****", "amount_eur": 7282.45, "start": 7282.45, "note": "En espera del banco" },

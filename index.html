@@ -98,24 +98,29 @@
     </div>
   </section>
 
+  <!-- Morosidad -->
   <section class="card section-gap">
     <h2>Morosidad</h2>
     <div class="muted" id="debtUpdated">Actualizado: —</div>
 
-    <div class="table-wrap">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Deuda (€)</th>
-            <th>Techo de partida</th>
-            <th>Notas</th>
-          </tr>
-        </thead>
-        <tbody id="debtTbody"></tbody>
-      </table>
+    <div class="kpis-row kpis-row-3" style="margin-top:10px;">
+      <div class="kpi">
+        <div class="label">Total morosidad</div>
+        <div class="value" id="debtTotal">—</div>
+      </div>
+
+      <div class="kpi">
+        <div class="label">Nº morosos</div>
+        <div class="value" id="debtCount">—</div>
+      </div>
+
+      <div class="kpi">
+        <div class="label">Deuda media</div>
+        <div class="value" id="debtAvg">—</div>
+      </div>
     </div>
   </section>
+
 
 
   <!-- Chart.js por CDN (sin Node, sin instalar nada) -->

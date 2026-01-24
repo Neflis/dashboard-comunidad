@@ -207,18 +207,19 @@ async function main() {
       const tbody = document.getElementById('debtTbody');
       if (!tbody) return;
 
-      const rows = (payload.debtors || [])
-        .slice()
-        .sort((a, b) => (b.amount_eur ?? 0) - (a.amount_eur ?? 0));
+      const debtors = (payload.debtors || []).slice();
+      const amounts = debtors
+        .map(d => Number(d.amount_eur ?? 0))
+        .filter(x => Number.isFinite(x) && x > 0);
+  
+      const total = amounts.reduce((a, b) => a + b, 0);
+      const count = amounts.length;
+      const avg = count ? total / count : 0;
+  
+      document.getElementById('debtTotal').textContent = `${total.toFixed(2)} €`;
+      document.getElementById('debtCount').textContent = `${count}`;
+      document.getElementById('debtAvg').textContent = `${avg.toFixed(2)} €`;
 
-      tbody.innerHTML = rows.map(d => `
-        <tr>
-          <td>${d.code ?? ''}</td>
-          <td>${Number(d.amount_eur ?? 0).toFixed(2)} €</td>
-          <td>${d.start ?? ''}</td>
-          <td>${d.note ?? ''}</td>
-        </tr>
-      `).join('') || `<tr><td colspan="4">Sin morosidad registrada</td></tr>`;
     } catch (e) {
       console.error(e);
     }
