@@ -76,5 +76,19 @@
       { "date": "2026-01-28", "action": "Incidencia: El 2º B le chorrea la columna del baño" },
       { "date": "2026-01-29", "action": "Llega carta de impago de agua y se comenta a las administradoras" }
     ]
+  },
+  {
+    "month": "2026-02",
+    "bank_balance": 1968.73,
+    "fees_issued": 975.0,
+    "fees_collected": 0,
+    "expenses_total": 0,
+    "water_m3": 0,
+    "events": [
+      { "date": "2026-01-03", "action": "Abierta incidencia al seguro por el sumidero" },
+      { "date": "2026-01-03", "action": "Empresa de desagues de urgencia se pone en contacto con nosotros y nos redirigen a fontaneria" },
+      { "date": "2026-01-04", "action": "Llaman de fontaneria de urgencia y pedimos que se pase a incidencia normal por alerta roja, no se va a subir con las rafagas de viento" },
+      { "date": "2026-01-05", "action": "Llaman desde fontaneria y al explicarle la problematica, nos dirigen a trabajos verticales" }
+    ]
   }
 ]
